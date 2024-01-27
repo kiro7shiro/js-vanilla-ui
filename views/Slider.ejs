@@ -1,0 +1,10 @@
+<div class="w3-display-container w3-padding">
+    <% if (!locals.value) locals.value = 50 %>
+    <% if (!locals.min) locals.min = 0 %>
+    <% if (!locals.max) locals.max = 100 %>
+    <label class="w3-display-right w3-center w3-teal w3-padding" for="slider1">
+        <%= value %> si
+    </label>
+    <input class="w3-display-left slider slider-square" type="range" name="slider1" id="slider1" min="<%= min %>" max="<%= max %>"
+        value="<%= value %>" data-action="slide">
+</div>

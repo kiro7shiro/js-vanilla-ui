@@ -1,0 +1,7 @@
+{
+    "liveServer.settings.mount": [
+        ["/bin", "/bin"],
+        ["/src", "/src"],
+        ["/views", "/views"]
+    ]
+}
