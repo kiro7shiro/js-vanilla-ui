@@ -1,4 +1,4 @@
-import { construct } from './src/index.js'
+import { construct } from '../src/index.js'
 
 async function setup() {
     const overlay = await construct(document.getElementById('myOverlay'))
@@ -51,4 +51,13 @@ async function setup() {
     })
 }
 
+function main() {
+    throw new Error('Not implemented.')
+    return
+}
+
 setup()
+    .then(main())
+    .catch(function (err) {
+        console.error(err)
+    })

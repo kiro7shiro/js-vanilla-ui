@@ -1,5 +1,18 @@
 import * as controls from './index.js'
 
+// Maybe not needed? A little bit to much?
+// Works fine so far without it
+let templates = null
+export async function preload() {
+    const resp = await fetch(`/views`)
+    if (resp.status !== 200) {
+        console.log(resp)
+        return
+    }
+    const json = await resp.json()
+    templates = json
+}
+
 /**
  * Request and render template files from the server.
  * @param {String} name of the template file to render
