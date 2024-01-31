@@ -23,7 +23,11 @@ export async function render(name, locals = {}) {
     const resp = await fetch(`/views/${name}`)
     const text = await resp.text()
     if (resp.status !== 200) throw new Error(text)
-    const html = ejs.render(text, locals)
+    const renderer = ejs.compile(text, { client: true, async: true })
+    const html = await renderer(locals, null, async function (path, d) {
+        const temp = await render(path, d)
+        return temp
+    })
     return html
 }
 
