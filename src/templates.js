@@ -36,17 +36,21 @@ export async function render(name, locals = {}) {
  * @param {Object} options to apply to the new instance
  * @returns {controls.Control}
  */
-export async function construct(source, options = { events: true }) {
+export async function construct(source, options = {}) {
+    // assign defaults
+    options = Object.assign({}, { events: true }, options)
+    // construct new instance
     let constructor = null
     let result = null
     if (typeof source === 'string') {
         constructor = controls[source]
         if (!constructor) constructor = controls.Control
         const html = await render(`${source}.ejs`, options)
-        result = new constructor(html)
+        result = new constructor(html, options)
     } else {
-        result = new controls.Control(source)
+        result = new controls.Control(source, options)
     }
+    // add events
     if (options.events) {
         if (Array.isArray(options.events)) {
             controls.addEvents(result, options.events)
