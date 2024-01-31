@@ -33,6 +33,7 @@ class Control {
      * @param {HTMLElement|String} source
      */
     constructor(source) {
+        if (source === null && source === undefined) throw new Error('Source must be given.')
         if (!(source instanceof HTMLElement) && !(typeof source === 'string'))
             throw new Error('Source element must be of type string or an instance of HTMLElement.')
         if (typeof source === 'string') {
